@@ -20,25 +20,21 @@ Route::get('/', function () {
 
 Auth::routes();
 Route::group(['middleware'=>'admin'],function(){
-    Route::get('/admin', function(){
-        return view('admin.index');
+    Route::prefix('admin')->group(function () {
+        Route::get('/home', 'HomeController@index')->name('home');
+        Route::resource('users', "AdminUsersController");
+        Route::get('/','HomeController@index');
+            //Route::get('barcode', 'HomeController@barcode');
+        Route::resource('addresses', "AdminAddressesController");
+        Route::resource('countries', "AdminCountriesController");
+        Route::resource('cities', "AdminCitiesController");
+        Route::resource('authors', "AdminAuthorsController");
+        Route::resource('books', "AdminBooksController");
+        Route::resource('barcodes', "AdminBarcodesController");
+        Route::resource('rents', "AdminRentsController");
+        Route::resource('inventories', "AdminInventoriesController");
     });
 });
-Route::get('/home', 'HomeController@index')->name('home');
-Route::resource('admin/users', "AdminUsersController");
-Route::get('/admin','HomeController@index');
-//Route::get('barcode', 'HomeController@barcode');
-Route::resource('admin/addresses', "AdminAddressesController");
-Route::resource('admin/countries', "AdminCountriesController");
-Route::resource('admin/cities', "AdminCitiesController");
-Route::resource('admin/authors', "AdminAuthorsController");
-Route::resource('admin/books', "AdminBooksController");
-Route::resource('admin/barcodes', "AdminBarcodesController");
-Route::resource('admin/rents', "AdminRentsController");
-Route::resource('admin/inventories', "AdminInventoriesController");
-
-
-
 
 
 Route::get('user/role/create', function(){
