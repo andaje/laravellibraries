@@ -12,7 +12,6 @@ class Address extends Model
 
     public function user()
     {
-        // user relationship
         return $this->hasMany('App\User');
     }
 

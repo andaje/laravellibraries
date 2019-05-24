@@ -51,16 +51,11 @@
 
                 </tr>
 
+                <td>{{ $book->barcode->rent->count() }}</td>
+
                 @foreach($book->barcode as $barcod)
 
                     <td>{{count($barcod->rent->where('return_date', NULL))}}</td>
-
-
-
-
-
-
-
 
                 @endforeach
 

@@ -6,10 +6,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class Rent extends Model
 {
-    //
     protected $fillable = ['rental_date', 'return_date', 'barcode_id', 'user_id'];
 
-  //  protected $dates = ['rental_date','return_date'];
+    protected $dates = ['rental_date','return_date'];
 
     public function user()
     {
@@ -20,7 +19,4 @@ class Rent extends Model
     {
         return $this->belongsTo('App\Barcode');
     }
-
-
-
 }

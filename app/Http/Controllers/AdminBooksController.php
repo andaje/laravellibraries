@@ -17,11 +17,9 @@ class AdminBooksController extends Controller
      */
     public function index()
     {
-        //
+        $books = Book::with('barcode.rent')->get();
 
-        $books =Book::all();
-        return view('admin.books.index', compact('barcode', 'books'));
-
+        return view('admin.books.index', compact('books'));
     }
 
     /**

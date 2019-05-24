@@ -6,9 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Barcode extends Model
 {
-    //
     protected $fillable = ['book_id', 'book_item'];
-    //protected $appends = ['bookitem'];
 
     public function book()
     {
@@ -20,13 +18,8 @@ class Barcode extends Model
         return $this->hasMany('App\Rent');
     }
 
-   /* public function getBookitemAttribute() {
-
-        return $this->book->isbn . $this->id;
-
-
-   }*/
-
-
-
+    public function countAvailableBooks()
+    {
+        return $this->hasMany(Rent::class)->whereHas('return_date')->count();
+    }
 }
