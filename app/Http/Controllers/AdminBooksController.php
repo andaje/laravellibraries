@@ -5,7 +5,6 @@ use App\Barcode;
 use App\Photo;
 use App\Author;
 use App\Book;
-use App\Rent;
 use Illuminate\Http\Request;
 
 class AdminBooksController extends Controller
@@ -17,8 +16,7 @@ class AdminBooksController extends Controller
      */
     public function index()
     {
-        $books = Book::with('barcode.rent')->get();
-
+        $books = Book::with('rentCount')->get();
         return view('admin.books.index', compact('books'));
     }
 
@@ -29,7 +27,7 @@ class AdminBooksController extends Controller
      */
     public function create()
     {
-        //
+
         $authors = Author::pluck('name','id')->all();
         return view('admin.books.create',compact('authors'));
     }
@@ -40,11 +38,9 @@ class AdminBooksController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+
     public function store(Request $request)
     {
-        //
-
-
         $input = $request->all();
         if($file = $request->file('photo_id')){
             $name = time() . $file->getClientOriginalName();

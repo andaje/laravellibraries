@@ -19,5 +19,11 @@ class Book extends Model
     public function barcode(){
         return $this->hasMany('App\Barcode');
     }
+
+    public function rentCount()
+    {
+        return $this->hasManyThrough('App\Rent', 'App\Barcode', 'book_id', 'barcode_id')
+            ->where('return_date', '=', null);
+    }
 }
 

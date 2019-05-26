@@ -13,18 +13,16 @@
             <th scope="col">Isbn</th>
             <th scope="col">Description</th>
             <th scope="col">Nr_BookItem</th>
+            <th scope="col">Rented</th>
             <th scope="col">Aviable</th>
             <th scope="col">Created_at</th>
             <th scope="col">Updated_at</th>
-
 
         </tr>
         </thead>
         <tbody>
         @if ($books)
             @foreach($books as $book)
-
-
                 <tr>
                     <td>{{$book->id}}</td>
                     <td>
@@ -36,34 +34,16 @@
                     <td>{{$book->year}}</td>
                     <td>{{$book->isbn}}</td>
                     <td>{{$book->description}}</td>
-                    <td>{{count($book->barcode)}}</td>
-
-
-
-                    <td>Placeholder</td>
-                    {{--<td>{{ $book->barcode->rent->count() }}</td>--}}
-
-                    {{--@foreach($book->barcode as $barcod)--}}
-                        {{--<td>{{count($barcod->rent->where('return_date', NULL))}}</td>--}}
-                    {{--@endforeach--}}
-
-
-
-
+                    <td>{{$book->barcode->count()}}</td>
+                    <td>{{$book->rentCount->count()}}</td>
+                    <td>{{abs($book->barcode->count() - $book->rentCount->count())}}</td>
                     <td>{{$book->created_at}}</td>
                     <td>{{$book->updated_at}}</td>
                     <td><a href="{{route('barcodes.create')}}">Create BookItem</a></td>
 
                 </tr>
-
-
-
-
-
-
             @endforeach
         @endif
-
         </tbody>
     </table>
     {{--<div class="row">
