@@ -41,7 +41,7 @@ class AdminRentsController extends Controller
         //
         $users = User::pluck('last_name', 'id');
         //$inventories = Inventory::pluck('barcode_id', 'id');
-        $barocdes = Barcode::pluck('book_item', 'id');
+        $barcodes = Barcode::pluck('book_item', 'id');
 
         return view('admin.rents.create', compact('users', 'barcodes'));
 

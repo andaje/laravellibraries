@@ -10,15 +10,21 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-
+use App\Book;
+use App\Author;
 use App\Role;
 use App\User;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/search','SearchController@search');
+
+
 
 Auth::routes();
 Route::group(['middleware'=>'admin'],function(){

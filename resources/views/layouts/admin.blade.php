@@ -398,18 +398,7 @@
                             </li>
                         </ul>
                     </li>
-                    <li>
-                        <a href="#"><i class="fa fa-arrow-circle-down"></i>Inventories<span
-                                class="fa arrow"></span></a>
-                        <ul class="nav nav-second-level">
-                            <li>
-                                <a href="{{route('inventories.index')}}">All Inventories</a>
-                            </li>
 
-
-                        </ul>
-                        <!-- /.nav-second-level -->
-                    </li>
 
 
 
