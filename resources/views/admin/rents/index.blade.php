@@ -28,7 +28,13 @@
                         <td>{{$rent->barcode->book_item}}</td>
                         <td>{{$rent->rental_date}}</td>
                         <td>{{$rent->return_date}}</td>
-                        <td><a href="{{route('rents.edit', $rent->id)}}">{{$rent->return_date !== NULL ? 'Aviable': 'Rented'}}</a></td>
+                        <td>
+                            @if($rent->return_date !== NULL)
+                                <a href="{{route('rents.create', $rent->id)}}">Rent</a>
+                            @else
+                                <a href="{{route('rents.edit', $rent->id)}}">Return</a>
+                            @endif
+                        </td>
                         <td>{{$rent->created_at ? $rent->created_at->diffForHumans() : 'no date'}}</td>
                         <td>{{$rent->updated_at ? $rent->updated_at->diffForHumans() : 'no date'}}</td>
                     </tr>

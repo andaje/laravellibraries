@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 use App\Author;
 use App\Book;
+use App\Barcode;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Input;
 
@@ -17,22 +19,29 @@ class SearchController extends Controller
 
     public function search()
     {
-        //$books = Book::all();
-
-        //dd($books);
-        $q = Input::get ( 'q' );
-       //dd($q);
-        $authors = Author::where('name', 'like', '%'. $q .'%')->pluck('name');
-        $books = DB::table('books')->leftJoin('authors', 'authors.id', '=','books.author_id')->where('authors.name', '=', $authors)->get();
-        //dd($books);
-        return view('selfservice',compact( 'books','authors'));
+        if(Auth::check()){
+            $q = Input::get ( 'q' );
+            //dd($q);
+            $authors = Author::where('name', 'like', '%'. $q .'%')->pluck('name');
+            $books = DB::table('books')->leftJoin('authors', 'authors.id', '=','books.author_id')->where('authors.name', '=', $authors)->get();
+            //dd($books);
+            return view('selfservice',compact( 'books','authors'));
+        }else{
+            $q = Input::get ( 'q' );
+            //dd($q);
+            $authors = Author::where('name', 'like', '%'. $q .'%')->pluck('name');
+            $books = DB::table('books')->leftJoin('authors', 'authors.id', '=','books.author_id')->where('authors.name', '=', $authors)->get();
+            //dd($books);
+            return view('welcome',compact( 'books','authors'));
+        }
     }
-
-
     public function index()
     {
-        //
+        $barcode = Barcode::all();
+        $books = Book::all();
+        return view('welcome',compact( 'books','barcode'));
     }
+
 
     /**
      * Show the form for creating a new resource.

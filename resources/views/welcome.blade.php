@@ -1,3 +1,5 @@
+
+
 <!doctype html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
@@ -56,7 +58,7 @@
     </style>
 </head>
 <body>
-<div class="flex-center position-ref full-height">
+<div class="flex-center position-ref ">
     @if (Route::has('login'))
         <div class="top-right links">
             @auth
@@ -70,20 +72,42 @@
             @endauth
         </div>
     @endif
-
-
+    <div class="d-flex flex-column">
         <form  action="search" method="get" role="search">
-            <input type="text"  name="q" placeholder="Search.."/>
+            <input type="text"  name="q" placeholder="Search author"/>
             <button type="submit">Search</button>
         </form>
-
-
-
-
-
-
+        <form  action="search" method="get" role="search">
+            <input type="text"  name="q" placeholder="Search title"/>
+            <button type="submit">Search</button>
+        </form>
+        <form  action="search" method="get" role="search">
+            <input type="text"  name="q" placeholder="Search description"/>
+            <button type="submit">Search</button>
+        </form>
+    </div>
 </div>
-
-
+<div>
+    @if(isset($books))
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>Author</th>
+                <th>Title</th>
+            </tr>
+            </thead>
+            <tbody>
+            @foreach($books as $book )
+                <tr>
+                    <td>{{$book->name}}</td>
+                    <td>{{$book->title}}</td>
+                    <td><a href="{{route('rents.create')}}">Rent</a></td>
+                </tr>
+            @endforeach
+            </tbody>
+        </table>
+    @endif
+</div>
 </body>
 </html>
+

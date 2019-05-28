@@ -12,7 +12,7 @@
             <th scope="col">Year</th>
             <th scope="col">Isbn</th>
             <th scope="col">Description</th>
-            <th scope="col">Nr_BookItem</th>
+            <th scope="col">Total</th>
             <th scope="col">Rented</th>
             <th scope="col">Aviable</th>
             <th scope="col">Created_at</th>
@@ -40,7 +40,6 @@
                     <td>{{$book->created_at}}</td>
                     <td>{{$book->updated_at}}</td>
                     <td><a href="{{route('barcodes.create')}}">Create BookItem</a></td>
-
                 </tr>
             @endforeach
         @endif
