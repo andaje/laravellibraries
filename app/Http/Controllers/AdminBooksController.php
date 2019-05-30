@@ -5,6 +5,7 @@ use App\Barcode;
 use App\Photo;
 use App\Author;
 use App\Book;
+use App\Rent;
 use Illuminate\Http\Request;
 
 class AdminBooksController extends Controller
@@ -15,9 +16,9 @@ class AdminBooksController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
+    {   $rent = Rent::all();
         $books = Book::with('rentCount')->get();
-        return view('admin.books.index', compact('books'));
+        return view('admin.books.index', compact('books', 'rent'));
     }
 
     /**
@@ -27,7 +28,6 @@ class AdminBooksController extends Controller
      */
     public function create()
     {
-
         $authors = Author::pluck('name','id')->all();
         return view('admin.books.create',compact('authors'));
     }
@@ -47,53 +47,37 @@ class AdminBooksController extends Controller
             $file->move('images', $name);
             $photo = Photo::create(['file'=>$name]);
             $input['photo_id'] = $photo->id;
-
-
             $author = Author::firstOrCreate(['name' => request('author_name')]);
-
             $book =  Book::create(['title' => request('title'),'edition' => request('edition'),'year' => request('year'),'isbn' => request('isbn'), 'description' => request('description'),'photo_id' => $photo->id , 'author_id' => $author->id ]);
-            //$barcod = Barcode::create(['book_id' => $book->id]);
-
-           $barcod = Barcode::create(['book_id' => $book->id, 'book_title' => $book->title, 'book_isbn' => $book->isbn ]);
+            $barcod = Barcode::create(['book_id' => $book->id, 'book_title' => $book->title, 'book_isbn' => $book->isbn ]);
             $barcod->save();
             $test =Barcode::findOrFail($barcod->id);
             //dd($test);
             $book_item= $book->isbn . $barcod->id;
             $test->update(['book_item' => $book_item]);
-
         }
-        //$author->books()->create($input);
-
-
         return redirect('/admin/books');
     }
-
     /**
      * Display the specified resource.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show( $id)
     {
         //
-        echo $id;
+        $book =Book::findOrFail($id);
+        return view('admin.books.index', compact('book', 'authors'));
     }
-
     /**
      * Show the form for editing the specified resource.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-
-
-
-
     public function edit($id)
     {
-        //
-
         $book =Book::findOrFail($id);
         $authors = Author::pluck('name','id')->all();
         return view('admin.books.edit', compact('book', 'authors'));
@@ -108,22 +92,15 @@ class AdminBooksController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
-
         $book = Book::findOrFail($id);
-        //$country = Country::firstOrCreate(['name' => request('country_name')]);
         $author = Author::firstOrCreate(['name' => request('author_name')]);
         $book->update(['title' => request('title'),'edition' => request('edition'),'year' => request('year'),'isbn' => request('isbn'),'description' => request('description'), 'author_id' => $author->id]);
-
-
         $input = $request->all();
-
         if ($file = $request->file('photo_id')) {
             $name = time() . $file->getClientOriginalName();
             $file->move('images', $name);
             $photo = Photo::create(['file' => $name]);
             $input['photo_id'] = $photo->id;
-
         }
         $book->update($input);
         return redirect('/admin/books');
@@ -136,8 +113,6 @@ class AdminBooksController extends Controller
      */
     public function destroy($id)
     {
-        //
-
         $book = Book::findOrFail($id);
         $book->delete();
         unlink(public_path() . $book->photo->file);

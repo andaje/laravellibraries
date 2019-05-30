@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 @section('content')
-    <h1>Tranzaction</h1>
+    <h1>Edit Rent</h1>
     {!! Form::model($rent,['method'=>'PATCH', 'action'=>['AdminRentsController@update', $rent->id],
     'files'=>true])!!}
     <div class="form-group">
@@ -37,7 +37,7 @@
     </div>
 
     <div class="form-group">
-        {!! Form::submit('Update Tranzaction', ['class'=>'btn btn-primary']) !!}
+        {!! Form::submit('Update Rent', ['class'=>'btn btn-primary']) !!}
     </div>
     {!! Form::close() !!}
 

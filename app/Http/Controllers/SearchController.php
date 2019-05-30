@@ -39,7 +39,7 @@ class SearchController extends Controller
     {
         $barcode = Barcode::all();
         $books = Book::all();
-        return view('welcome',compact( 'books','barcode'));
+        return view('selfservice',compact( 'books','barcode'));
     }
 
 

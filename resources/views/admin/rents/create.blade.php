@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 @section('content')
 
-    <h1>Create Tranzaction</h1>
+    <h1>Create Rent</h1>
 
 
     {!! Form::open(['method'=>'POST', 'action'=>'AdminRentsController@store','files'=>true]) !!}

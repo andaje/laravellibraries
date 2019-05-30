@@ -36,7 +36,17 @@
                     <td>{{$book->description}}</td>
                     <td>{{$book->barcode->count()}}</td>
                     <td>{{$book->rentCount->count()}}</td>
-                    <td>{{abs($book->barcode->count() - $book->rentCount->count())}}</td>
+                    <td>
+                        @if(abs($book->barcode->count() - $book->rentCount->count())> 0)
+                            @if($book->rents)
+                                <a href="{{route('rents.create')}}">Rent</a>
+                            @else
+                                <a href="{{route('rents.edit')}}">Return</a>
+                            @endif
+                         @else
+                            Rented
+                        @endif
+                    </td>
                     <td>{{$book->created_at}}</td>
                     <td>{{$book->updated_at}}</td>
                     <td><a href="{{route('barcodes.create')}}">Create BookItem</a></td>

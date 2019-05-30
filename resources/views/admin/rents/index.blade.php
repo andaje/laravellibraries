@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 @section('content')
-    <h1>Tranzaction</h1>
+    <h1>Rent</h1>
     <div class="col-md-12">
         <table class="table table-striped">
             <thead>

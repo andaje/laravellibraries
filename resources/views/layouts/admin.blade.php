@@ -367,6 +367,7 @@
                             </li>
 
 
+
                         </ul>
                         <!-- /.nav-second-level -->
                     </li>
@@ -391,10 +392,10 @@
                         <ul class="nav nav-second-level">
 
                             <li>
-                                <a href="{{route('rents.index')}}">Tranzaction</a>
+                                <a href="{{route('rents.index')}}">All Rents</a>
                             </li>
                             <li>
-                                <a href="{{route('rents.create')}}">Create Tranzaction</a>
+                                <a href="{{route('rents.create')}}">Create Rent</a>
                             </li>
                         </ul>
                     </li>
