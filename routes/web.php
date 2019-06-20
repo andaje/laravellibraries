@@ -10,8 +10,7 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-use App\Book;
-use App\Author;
+
 use App\Role;
 use App\User;
 use Illuminate\Support\Facades\Auth;
@@ -23,16 +22,16 @@ Route::get('/', function () {
 });
 
 Route::get('/search','SearchController@search');
-
+//Route::get('/','HomeController@index');
 
 
 Auth::routes();
 Route::group(['middleware'=>'admin'],function(){
     Route::prefix('admin')->group(function () {
-        Route::get('/home', 'HomeController@index')->name('home');
+        //Route::get('/home', 'HomeController@index')->name('home');
         Route::resource('users', "AdminUsersController");
         Route::get('/','HomeController@index');
-            //Route::get('barcode', 'HomeController@barcode');
+        //Route::get('barcode', 'HomeController@barcode');
         Route::resource('addresses', "AdminAddressesController");
         Route::resource('countries', "AdminCountriesController");
         Route::resource('cities', "AdminCitiesController");
