@@ -8,12 +8,13 @@ use Faker\Generator as Faker;
 $factory->define(Book::class, function (Faker $faker) {
     return [
         //
-        'title' => $faker->ra,
-        'author_id',
-        'isbn',
-        'edition',
-        'year',
-        'photo_id',
+        'author_id'=> $faker->randomNumber(2),
+        'title' => implode(' ', $faker->words(3)),
+        'isbn'=> implode(' ', $faker->words(3)),
+        'edition'=> implode(' ', $faker->words(3)),
+        'year'=> 1999,
+        'photo_id'=> $faker->randomNumber(2),
+        'description'=> implode(' ', $faker->words(10))
 
     ];
 });

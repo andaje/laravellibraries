@@ -17,8 +17,8 @@ class CreateRentsTable extends Migration
             $table->bigIncrements('id');
             $table->integer('user_id')->index();
             $table->integer('barcode_id')->index();
-            $table->dateTime('rental_date')->default('NULL');
-            $table->dateTime('return_date')->default('NULL');
+            $table->dateTime('rental_date')->nullable();;
+            $table->dateTime('return_date')->nullable();;
             $table->timestamps();
         });
     }
