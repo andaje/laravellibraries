@@ -6,18 +6,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class Address extends Model
 {
-    //
-    protected $fillable = ['street', 'city_id'];
+    protected $fillable = [
+         'street', 'number', 'bus','city','postal_code','country'
+    ];
 
-
-    public function user()
-    {
-        return $this->hasMany('App\User');
+    public function user(){
+        return $this->belongsTo('App\User');
     }
-
-    public function city()
-    {
-        return $this->belongsTo('App\City');
-    }
-
 }

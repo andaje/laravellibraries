@@ -12,8 +12,8 @@
         {!! Form::text('title', null, ['class'=>'form-control']) !!}
     </div>
     <div class="form-group">
-        {!! Form::label('author_name', 'Author:') !!}
-        {!! Form::text('author_name', null, ['class'=>'form-control']) !!}
+        {!! Form::label('author_id', 'Author:') !!}
+        {!! Form::select('author_id', [' '=>'Choose Option'] + $authors,null, ['class' => 'form-control']) !!}
     </div>
     <div class="form-group">
         {!! Form::label('edition', 'Edition:') !!}

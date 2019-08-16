@@ -39,7 +39,8 @@ class UsersRequest extends FormRequest
             'first_name.required'=>'First Name is required',
             'last_name.required'=>'Last Name is required',
             'password.required' =>'Password is required',
-            'role_id.required'=>'Role is required'
+            'role_id.required'=>'Role is required',
+
         ];
     }
 }

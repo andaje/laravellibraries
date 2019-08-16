@@ -16,7 +16,8 @@ class CreateBarcodesTable extends Migration
         Schema::create('barcodes', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->integer('book_id')->index();
-            $table->string('book_item');
+            $table->text('book_item')->nullable();
+            $table->boolean('available')->default(1);
             $table->timestamps();
         });
     }

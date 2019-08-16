@@ -2,135 +2,68 @@
 
 namespace App\Http\Controllers;
 
-use App\Author;
+use App\Http\Requests\BarcodeRequest;
+use Illuminate\Http\Request;
 use App\Book;
-use App\Rent;
 use App\Barcode;
 
-use App\Inventory;
-use App\Photo;
-use Illuminate\Http\Request;
+
 
 class AdminBarcodesController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-
-
-
     public function index()
     {
-        //
-        //$bookItem = Barcode::groupBy('book_id')->count('id');
-        //$inventories = Inventory::all();
-
-
-        $barcodes = Barcode::has('rent')->get();
+        $barcodes = Barcode::paginate(7);
         return view('admin.barcodes.index', compact('barcodes'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
-        //
-        $book = Book::pluck('title','isbn');
-
-        return view('admin.barcodes.create',compact('book'));
+        $books = Book::pluck('title', 'id','isbn')->all();
+        return view('admin.barcodes.create', compact('books'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request )
+    public function store(BarcodeRequest $request)
     {
-        //
+        $i = $request->only('quantity');
+        $i = (int)$i['quantity'];
+        while ($i != 0) {
+            $input = $request->only('book_id');
+            Barcode::create($input);
+            $last_bookItem = Barcode::orderBy('id', 'desc')->first();
+            $input['book_item'] =  $last_bookItem->id;
+            $last_bookItem->update($input);
+            $i--;
+        }
+        return redirect('/admin/barcodes');
+    }
+    public function show($id)
+    {
+        $barcode = Barcode::findOrFail($id);
+        return view('admin.barcodes.show', compact('barcode'));
+    }
+    public function edit($id)
+    {
+        $book =Book::findOrFail($id);
+        return view('admin.barcodes.edit', compact('book'));
 
-        $book = Book::where(['title' => request('book_title'), 'isbn' => request('book_isbn')])->first();
+    }
+    public function update(Request $request, $id)
+    {
+        $book = Book::findOrFail($id);
         $barcode = Barcode::create(['book_id' => $book->id]);
         $barcode->save();
         $test =Barcode::findOrFail($barcode->id);
         //dd($test);
-        $book_item= $book->isbn . $barcode->id;
+        $book_item=  $barcode->id;
         $test->update(['book_item' => $book_item]);
         return redirect('/admin/barcodes');
     }
-
-
-
-    /*public function barcode()
-    {
-        return view('barcode');
-    }*/
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-
-        $barcode =Barcode::findOrFail($id);
-        $book = Book::pluck('title','isbn');
-        return view('admin.barcodes.edit', compact('book', 'barcode'));
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-        $barcode = Barcode::findOrFail($id);
-        $book = Book::first(['title' => request('book_title'), 'isbn' => request('book_isbn')]);
-
-        $barcode->update([ 'book_id' => $book->id]);
-
-        return redirect('/admin/barcodes');
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function destroy($id)
     {
-        //
+        $barcode = Barcode::findOrFail($id);
+        $barcode->delete();
 
-        $barcod = Barcode::findOrFail($id);//record uit database halen
-        $barcod->delete();
         return redirect('/admin/barcodes');
     }
-
-
-
 }

@@ -1,34 +1,34 @@
 @extends('layouts.admin')
 @section('content')
-
     <h1>Create Rent</h1>
-
-
-    {!! Form::open(['method'=>'POST', 'action'=>'AdminRentsController@store','files'=>true]) !!}
+    {!! Form::open(['method' => 'POST', 'action' => 'AdminUsersController@store', 'files'=>true]) !!}
 
     <div class="form-group">
-        {!! Form::label('user_first_name', 'First Name:') !!}
-        {!! Form::text('user_first_name', null, ['class'=>'form-control']) !!}
+        {!! Form::label('name', 'Name:') !!}
+        {!! Form::text('name', null, ['class' => 'form-control']) !!}
     </div>
     <div class="form-group">
-        {!! Form::label('user_last_name', 'Last Name:') !!}
-        {!! Form::text('user_last_name', null, ['class'=>'form-control']) !!}
+        {!! Form::label('email', 'E-mail:') !!}
+        {!! Form::text('email', null, ['class' => 'form-control']) !!}
     </div>
     <div class="form-group">
-        {!! Form::label('rental_book_item', 'Book_item:') !!}
-        {!! Form::text('rental_book_item',null, ['class'=>'form-control']) !!}
-    </div>
-
-    <div class="form-group">
-        {!! Form::label('rental_date', 'Rental Date:') !!}
-        {!! Form::text('rental_date' ,null, ['class'=>'form-control']) !!}
+        {!! Form::label('role_id', 'Role:') !!}
+        {!! Form::select('role_id', [' '=>'Choose Option'] + $roles,null, ['class' => 'form-control']) !!}
     </div>
     <div class="form-group">
-        {!! Form::label('return_date', 'Return Date:') !!}
-        {!! Form::text('return_date' ,null, ['class'=>'form-control']) !!}
+        {!! Form::label('is_active', 'Status:') !!}
+        {!! Form::select('is_active',array(1=>'Active', 0=>'Not Active'),0, ['class' => 'form-control']) !!}
     </div>
     <div class="form-group">
-        {!! Form::submit('Create Tranzaction', ['class'=>'btn btn-primary']) !!}
+        {!! Form::label('password', 'Password:') !!}
+        {!! Form::password('password', ['class' => 'form-control']) !!}
+    </div>
+    <div class="form-group">
+        {!! Form::label('photo_id', 'Photo:') !!}
+        {!! Form::file('photo_id',null, ['class' => 'form-control']) !!}
+    </div>
+    <div class="form-group">
+        {!! Form::submit('Create User', ['class' => 'btn btn-primary']) !!}
     </div>
     {!! Form::close() !!}
     @include('includes.form_error')

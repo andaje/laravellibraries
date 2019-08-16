@@ -33,11 +33,30 @@
                 {!! Form::label('password', 'Password:') !!}
                 {!! Form::password('password', ['class'=>'form-control']) !!}
             </div>
-            {{--<div class="form-group">
-                {!! Form::label('photo_id', 'Photo:') !!}
-                {!! Form::file('photo_id', null, ['class'=>'form-control']) !!}
+             <div class="form-group">
+                {!! Form::label('street', 'Street:') !!}
+                {!! Form::text('street', $address->street, ['class' => 'form-control']) !!}
             </div>
---}}
+            <div class="form-group">
+                {!! Form::label('number', 'Number:') !!}
+                {!! Form::text('number', $address->number, ['class' => 'form-control']) !!}
+            </div>
+            <div class="form-group">
+                {!! Form::label('bus', 'Bus number:') !!}
+                {!! Form::text('bus',$address->bus, ['class' => 'form-control']) !!}
+            </div>
+            <div class="form-group">
+                {!! Form::label('city', 'City:') !!}
+                {!! Form::text('city', $address->city, ['class' => 'form-control']) !!}
+            </div>
+            <div class="form-group">
+                {!! Form::label('postal_code', 'Postal Code:') !!}
+                {!! Form::text('postal_code',$address->postal_code, ['class' => 'form-control']) !!}
+            </div>
+            <div class="form-group">
+                {!! Form::label('country', 'Country:') !!}
+                {!! Form::text('country', $address->country, ['class' => 'form-control']) !!}
+            </div>
             <div class="form-group">
                 {!! Form::submit('Update User', ['class'=>'btn btn-primary col-md-6']) !!}
             </div>

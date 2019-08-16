@@ -12,9 +12,6 @@
             <th scope="col">Year</th>
             <th scope="col">Isbn</th>
             <th scope="col">Description</th>
-            <th scope="col">Total</th>
-            <th scope="col">Rented</th>
-            <th scope="col">Aviable</th>
             <th scope="col">Created_at</th>
             <th scope="col">Updated_at</th>
 
@@ -34,22 +31,9 @@
                     <td>{{$book->year}}</td>
                     <td>{{$book->isbn}}</td>
                     <td>{{$book->description}}</td>
-                    <td>{{$book->barcode->count()}}</td>
-                    <td>{{$book->rentCount->count()}}</td>
-                    <td>
-                        @if(abs($book->barcode->count() - $book->rentCount->count())> 0)
-                            @if($book->rents)
-                                <a href="{{route('rents.create')}}">Rent</a>
-                            @else
-                                <a href="{{route('rents.edit')}}">Return</a>
-                            @endif
-                         @else
-                            Rented
-                        @endif
-                    </td>
                     <td>{{$book->created_at}}</td>
                     <td>{{$book->updated_at}}</td>
-                    <td><a href="{{route('barcodes.create')}}">Create BookItem</a></td>
+                    <td><a href="{{route('barcodes.edit', $book->id)}}">Create BookItem</a></td>
                 </tr>
             @endforeach
         @endif

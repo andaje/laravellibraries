@@ -304,47 +304,8 @@
                         </ul>
                         <!-- /.nav-second-level -->
                     </li>
-                    <li>
-                        <a href="#"><i class="fa fa-comment"></i> Addresses<span
-                                class="fa arrow"></span></a>
-                        <ul class="nav nav-second-level">
-                            <li>
-                                <a href="{{route('addresses.index')}}">All Addresses</a>
-                            </li>
-                            <li>
-                                <a href="{{route('addresses.create')}}">Create Address</a>
-                            </li>
 
 
-                        </ul>
-                        <!-- /.nav-second-level -->
-                    </li>
-                    <li>
-                        <a href="#"><i class="fa fa-arrow-circle-down"></i>Countries<span
-                                class="fa arrow"></span></a>
-                        <ul class="nav nav-second-level">
-                            <li>
-                                <a href="{{route('countries.index')}}">All Countries</a>
-                            </li>
-
-
-                        </ul>
-                        <!-- /.nav-second-level -->
-                    </li>
-                    <li>
-                        <a href="#"><i class="fa fa-arrow-circle-down"></i>Cities<span
-                                class="fa arrow"></span></a>
-                        <ul class="nav nav-second-level">
-                            <li>
-                                <a href="{{route('cities.index')}}">All Cities</a>
-                            </li>
-                            <li>
-                                <a href="{{route('cities.create')}}">Create City</a>
-                            </li>
-
-                        </ul>
-                        <!-- /.nav-second-level -->
-                    </li>
                     <li>
                         <a href="#"><i class="fa fa-arrow-circle-down"></i>Authors<span
                                 class="fa arrow"></span></a>
@@ -368,6 +329,7 @@
 
 
 
+
                         </ul>
                         <!-- /.nav-second-level -->
                     </li>
@@ -382,7 +344,6 @@
                             <li>
                                 <a href="{{route('barcodes.create')}}">Create BookItem</a>
                             </li>
-
                         </ul>
                         <!-- /.nav-second-level -->
                     </li>
@@ -394,9 +355,7 @@
                             <li>
                                 <a href="{{route('rents.index')}}">All Rents</a>
                             </li>
-                            <li>
-                                <a href="{{route('rents.create')}}">Create Rent</a>
-                            </li>
+
                         </ul>
                     </li>
 

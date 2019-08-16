@@ -17,29 +17,28 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
-Route::get('/search','SearchController@search');
-//Route::get('/','HomeController@index');
 
 
+
+Route::get('/', 'FrontendController@index');
+Route::patch('rents/{id}', 'FrontendController@update');
+Route::patch('/{id}', 'FrontendController@returnBook');
+
+Route::get('/rentals', [ 'uses'=>'FrontendController@myRentals'])->middleware('auth');
+Route::get('/rentals/history', [ 'uses'=>'FrontendController@history'])->middleware('auth');
 Auth::routes();
+Route::get('/admin', 'HomeController@index')->middleware('admin');
+
 Route::group(['middleware'=>'admin'],function(){
     Route::prefix('admin')->group(function () {
-        //Route::get('/home', 'HomeController@index')->name('home');
+
         Route::resource('users', "AdminUsersController");
-        Route::get('/','HomeController@index');
-        //Route::get('barcode', 'HomeController@barcode');
         Route::resource('addresses', "AdminAddressesController");
-        Route::resource('countries', "AdminCountriesController");
-        Route::resource('cities', "AdminCitiesController");
         Route::resource('authors', "AdminAuthorsController");
         Route::resource('books', "AdminBooksController");
         Route::resource('barcodes', "AdminBarcodesController");
         Route::resource('rents', "AdminRentsController");
-        Route::resource('inventories', "AdminInventoriesController");
+
     });
 });
 

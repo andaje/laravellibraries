@@ -1,24 +1,22 @@
 @extends('layouts.admin')
 @section('content')
-    <h1>Edit BookItem</h1>
-
-    {!! Form::model($barcode,['method'=>'PATCH', 'action'=>['AdminBarcodesController@edit', $barcode->id],
+    <h1>Create BookItem</h1>
+    {!! Form::model($book,['method'=>'PATCH', 'action'=>['AdminBarcodesController@update', $book->id],
      'files'=>true])
       !!}
     <div class="form-group">
-        {!! Form::label('book_title', 'Title:') !!}
-        {!! Form::text('book_title', $barcode->book->title, null, ['class'=>'form-control']) !!}
+        {!! Form::label('title', 'Title:') !!}
+        {!! Form::text('title', null, ['class'=>'form-control']) !!}
     </div>
     <div class="form-group">
-        {!! Form::label('book_isbn', 'Isbn:') !!}
-        {!! Form::text('book_isbn', $barcode->book->isbn, null, ['class'=>'form-control']) !!}
+        {!! Form::label('isbn', 'Isbn:') !!}
+        {!! Form::text('isbn', null, ['class'=>'form-control']) !!}
     </div>
     <div class="form-group">
-        {!! Form::submit('Update BookItem', ['class'=>'btn btn-primary col-md-6']) !!}
+        {!! Form::submit('Create BookItem', ['class'=>'btn btn-primary col-md-6']) !!}
     </div>
-
     {!! Form::close() !!}
-    {!! Form::open(['method'=>'DELETE', 'action'=>['AdminBarcodesController@destroy', $barcode->id]]) !!}
+    {!! Form::open(['method'=>'DELETE', 'action'=>['AdminBarcodesController@destroy', $book->id]]) !!}
     <div class="form-group">
         {!! Form::submit('Delete BookItem', ['class'=>'btn btn-danger col-md-6']) !!}
     </div>

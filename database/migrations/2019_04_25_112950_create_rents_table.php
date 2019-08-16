@@ -15,10 +15,11 @@ class CreateRentsTable extends Migration
     {
         Schema::create('rents', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->integer('user_id')->index();
-            $table->integer('barcode_id')->index();
-            $table->dateTime('rental_date')->nullable();;
-            $table->dateTime('return_date')->nullable();;
+            $table->integer('user_id')->index()->nullable();
+            $table->integer('barcode_id')->index()->nullable();
+            $table->date('rental_start');
+            $table->date('return_date')->nullable();
+            $table->date('max_date')->nullable();
             $table->timestamps();
         });
     }

@@ -11,7 +11,7 @@ $factory->define(Author::class, function (Faker $faker) {
         //
 
 
-            'name' => $faker->word,
+            'name' => $faker->name,
 
     ];
 });

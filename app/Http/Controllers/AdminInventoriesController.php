@@ -15,13 +15,13 @@ class AdminInventoriesController extends Controller
     public function index()
     {
         //
-        $inventories = Inventory::all();
 
 
 
 
 
-        return view('admin.inventories.index', compact( 'inventories'));
+
+
 
     }
 

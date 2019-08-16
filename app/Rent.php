@@ -6,9 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Rent extends Model
 {
-    protected $fillable = ['rental_date', 'return_date', 'barcode_id', 'user_id'];
-
-    protected $dates = ['rental_date','return_date'];
+    protected $fillable = ['user_id','barcode_id','rental_start','return', 'max_date'];
 
     public function user()
     {

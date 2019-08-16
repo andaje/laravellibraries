@@ -16,7 +16,8 @@
         "laravel/tinker": "^1.0",
         "laravelcollective/html": "^5.8",
         "milon/barcode": "^5.3",
-        "peal/laravel-barcode-generator": "dev-master"
+        "peal/laravel-barcode-generator": "dev-master",
+        "simplesoftwareio/simple-qrcode": "^2.0"
     },
 
 

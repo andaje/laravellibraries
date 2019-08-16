@@ -26,7 +26,30 @@
         {!! Form::label('password', 'Password:') !!}
         {!! Form::password('password', ['class'=>'form-control']) !!}
     </div>
-
+    <div class="form-group">
+        {!! Form::label('street', 'Street:') !!}
+        {!! Form::text('street', null, ['class' => 'form-control']) !!}
+    </div>
+    <div class="form-group">
+        {!! Form::label('number', 'Number:') !!}
+        {!! Form::text('number', null, ['class' => 'form-control']) !!}
+    </div>
+    <div class="form-group">
+        {!! Form::label('bus', 'Bus:') !!}
+        {!! Form::text('bus', null, ['class' => 'form-control']) !!}
+    </div>
+    <div class="form-group">
+        {!! Form::label('city', 'City:') !!}
+        {!! Form::text('city', null, ['class' => 'form-control']) !!}
+    </div>
+    <div class="form-group">
+        {!! Form::label('postal_code', 'Postal Code:') !!}
+        {!! Form::text('postal_code', null, ['class' => 'form-control']) !!}
+    </div>
+    <div class="form-group">
+        {!! Form::label('country', 'Country:') !!}
+        {!! Form::text('country', null, ['class' => 'form-control']) !!}
+    </div>
     <div class="form-group">
         {!! Form::submit('Create User', ['class'=>'btn btn-primary']) !!}
     </div>

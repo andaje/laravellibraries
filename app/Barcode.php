@@ -6,14 +6,14 @@ use Illuminate\Database\Eloquent\Model;
 
 class Barcode extends Model
 {
-    protected $fillable = ['book_id', 'book_item'];
+    protected $fillable = ['book_id', 'book_item','available'];
 
     public function book()
     {
         return $this->belongsTo('App\Book');
     }
 
-    public function rent()
+    public function rental()
     {
         return $this->hasMany('App\Rent');
     }
